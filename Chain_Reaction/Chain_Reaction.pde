@@ -25,6 +25,15 @@ void draw() {
     balls[i].draw();
     balls[i].process();
     
+    if (balls[i].state == 1 || balls[i].state == 2)
+      for (int j = 0; j < balls.length; j++){
+        if ( balls[i].isTouching(balls[j])){
+          if (balls[j].state == 0 )
+            balls[j].state = 1;
+        }
+      }
+        
+    
     
   }
 }
