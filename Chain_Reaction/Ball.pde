@@ -100,7 +100,7 @@ void bounce(){
  
  
  boolean isTouching( Ball other ) {
-   float distance = (int)dist(x,y,other.x, other.y);
+   float distance = dist(x,y,other.x, other.y);
    if (distance <= (rad/2) + (other.rad / 2)) {
      return true;}
      else {
