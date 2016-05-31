@@ -14,7 +14,7 @@ void setup() {
 
 
 void draw() {
-  background((int)Math.random()*100);
+  background(0);
 
 
   for (int i=0; i < balls.length; i++ ) {

@@ -35,45 +35,29 @@ class Ball {
   
  void draw(){
    fill (c);
+   chainReact();
    ellipse(x, y, rad, rad);
    
    }
 void process(){
   move();
   
-  chainReact();
+
   
 }
 void chainReact(){
-  if (clickedOn()){
-    state = GROWING;
-  }
-  if (state == GROWING){
-    if (rad >= 80)
-      state = SHRINKING;
-    else 
-      rad += 10;
-  }
-  if (state == GROWING){
-    if (rad <= 0)
-      state = DEAD;
-    else 
-      rad -= 10;
-  }
-    
+
+     
 }
 
-boolean clickedOn(){
- /* if (mousePressed)
-    if (( mouseX - x > 0 && mouseX - x < rad) || ( x - mouseX > 0 && x - mouseX < rad))
-      if (( mouseY - y > 0 && mouseY - y < rad) || ( y - mouseY > 0 && y - mouseY < rad))
-*/
-  if (mousePressed &&
-      mouseX == x &&
-      mouseY == y)
-          return true;
-  return false;
-}
+
+
+void mousePressed(){
+   if  (mouseX == x && mouseY == y){
+          state = 1;
+   }
+
+  }
 
 
 void bounce(){
@@ -89,6 +73,24 @@ void bounce(){
     x = x + dx;
     y = y + dy;
     bounce();
+    
+  if (state == 1){
+    dx = 0;
+    dy = 0;
+    if (rad >= 80)
+      state = 2;
+      
+    else 
+      rad += .5;
+  }
+  if (state == 2){
+    dy = 0;
+    dx = 0;
+    if (rad <= 0)
+      state = 3;
+    else 
+      rad -=.5;
+  }
     
     
        
