@@ -22,7 +22,7 @@ class Ball {
     float b = random(256);
     c = color( r, g, b );
     
-    rad = 10;
+    rad = 20;
     
     x = random( (width - r) + r/2 );
     y = random( (height - r) + r/2 );
@@ -39,7 +39,42 @@ class Ball {
    
    }
 void process(){
-  move();}
+  move();
+  
+  chainReact();
+  
+}
+void chainReact(){
+  if (clickedOn()){
+    state = GROWING;
+  }
+  if (state == GROWING){
+    if (rad >= 80)
+      state = SHRINKING;
+    else 
+      rad += 10;
+  }
+  if (state == GROWING){
+    if (rad <= 0)
+      state = DEAD;
+    else 
+      rad -= 10;
+  }
+    
+}
+
+boolean clickedOn(){
+ /* if (mousePressed)
+    if (( mouseX - x > 0 && mouseX - x < rad) || ( x - mouseX > 0 && x - mouseX < rad))
+      if (( mouseY - y > 0 && mouseY - y < rad) || ( y - mouseY > 0 && y - mouseY < rad))
+*/
+  if (mousePressed &&
+      mouseX == x &&
+      mouseY == y)
+          return true;
+  return false;
+}
+
 
 void bounce(){
       if (x > width || x < 0) {
@@ -54,7 +89,12 @@ void bounce(){
     x = x + dx;
     y = y + dy;
     bounce();
+    
+    
+       
   }
+  
+
  
  
  boolean isTouching( Ball other ) {

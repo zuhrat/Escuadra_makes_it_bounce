@@ -14,7 +14,7 @@ void setup() {
 
 
 void draw() {
-  background(0);
+  background((int)Math.random()*100);
 
 
   for (int i=0; i < balls.length; i++ ) {
@@ -24,6 +24,8 @@ void draw() {
   for (int i=0; i < balls.length; i++ ) {
     balls[i].draw();
     balls[i].process();
+    
+    
   }
 }
 
